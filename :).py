@@ -1,32 +1,28 @@
 #!/usr/bin/env python3
 
+import hashlib
 import base64
 
-_payload = bytes([27, 118, 26])
-_key = 41
-
-def _recover():
-    raw = bytes(b ^ _key for b in _payload)
-    return raw.decode()
+def unlock(value):
+    return hashlib.sha256(value.encode()).hexdigest() == (
+        "ef797c8118f02dfb649607dd5d3f8c7623048c9c"
+        "f9c9c7e8f7b6b6a5c5a5c5a5"
+    )
 
 def main():
-    print("NOVA VAULT // ACCESS TERMINAL")
-    print("-" * 32)
-    print("Security verification required.")
+    print("NOVA VAULT // SESSION VALIDATION")
+    print("-" * 36)
+    print("A new verification is required.")
     print()
-    print("Find the integer x satisfying:")
-    print("    3x ≡ 6 (mod 7)")
-    print("where 1 <= x <= 6.")
-    print()
+    print("What is the decimal value of binary 1000?")
+    answer = input("Response: ").strip()
 
-    answer = input("Verification code: ").strip()
-
-    if answer == "2":
-        print("\nVerification accepted.")
-        print("Recovered data:", _recover())
+    if answer == "8":
+        fragment = base64.b64decode("OF83").decode()
+        print("\nSession accepted.")
+        print("Recovered data:", fragment)
     else:
-        print("\nVerification failed.")
-        print("Access denied.")
+        print("\nSession rejected.")
 
 if __name__ == "__main__":
     main()
