@@ -1,26 +1,23 @@
 #!/usr/bin/env python3
 
 def recover():
-    encoded = "22_27"
-    return "".join(
-        chr(ord(c) - 1) if c.isdigit() else c
-        for c in encoded
-    )
+    encoded = "31395F3133"
+    return bytes.fromhex(encoded).decode()
 
 def main():
-    print("NOVA VAULT // SECONDARY AUTHORIZATION")
-    print("-" * 40)
-    print("Solve for x:")
-    print("    4x + 3 = 47")
+    print("NOVA VAULT // FINAL NODE")
+    print("-" * 30)
+    print("Solve the sequence:")
+    print("    3, 7, 11, 15, ?")
     print()
 
-    answer = input("Authorization code: ").strip()
+    answer = input("Node verification: ").strip()
 
-    if answer == "11":
-        print("\nAuthorization accepted.")
-        print("Recovered data:", '!!_!^')
+    if answer == "19":
+        print("\nNode verified.")
+        print("Recovered data:", recover())
     else:
-        print("\nAuthorization rejected.")
+        print("\nVerification failed.")
 
 if __name__ == "__main__":
     main()
